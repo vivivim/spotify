@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #2a2a2a, #000);
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+        .container {
+            width: 64vw;
+            min-width: 440px;
+            height: 60vh;
+            min-height: 460px;
+            background-color: #121212;
+            border: none;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            margin: 30px auto;
+        }
+        .container .text {
+            top: 60px;
+            left: auto;
+            position: absolute;
+            color: white;
+            font-size: 1.35rem;
+            padding: 0px;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container .login {
+            justify-content: center;
+            align-items: center;
+        }
+        .container .signup {
+            position: absolute;
+            top: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #a9a9a9;
+        }
+        .container .signup a {
+            font-style: bold;
+            color: white;
+        }
+        input {
+            width: 300px;
+            height: 12px;
+            background-color: transparent;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px;
+        }
+        button {
+            border: none;
+            border-radius: 50px;
+            width: 300px;
+            height: 50px;
+            margin: 10px 20px 10px 40px;
+            background-color: #1cd760;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bolder;
+            
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text">
+            <img src="./스포티파이/logo.png" style="width: 36px; height: 36px;">
+            <h2 style="margin: 4px;">Spotify에 로그인하기</h2>
+        </div>
+        <div class="login">
+            <input type="text" id="id-box" placeholder="ID"><br>
+            <input type="pwd" id="pwd-box" placeholder="Password"><br>
+            <button type="submit" id="login" onclick="" disabled>로그인하기</button><br>
+        </div>
+        <div class="signup">
+            <p style="margin: 8px;">계정이 없나요?</p>
+            <a href="http://127.0.0.1:5500/JS실습/signup.html">Spotify에 가입하기</a>
+        </div>
+    </div>
+
+    <script>
+        const idInput = document.getElementById("id-box");
+        const pwdInput = document.getElementById("pwd-box");
+        const loginBtn = document.querySelector("#login");
+        const signupBtn = document.querySelector("#signup");
+
+        function isValid() {
+            const userId = localStorage.getItem("userId");
+            const userPwd = localStorage.getItem("userPwd");
+            
+            console.log(idInput.value);
+            console.log(pwdInput.value);
+            console.log(userId);
+            console.log(userPwd);
+            if (userId === idInput.value && userPwd === pwdInput.value) {
+                location.href='http://127.0.0.1:5500/JS실습/스포티파이/spotify.html'
+            } else {
+                alert("틀렸네요");
+            }
+        }
+
+        function canSubmit() {
+            if (idInput.value && pwdInput) {
+                loginBtn.disabled = false;
+                loginBtn.classList.add("enabled");
+            } else {
+                loginBtn.disabled = true;
+                loginBtn.classList.remove("enabled");
+            }
+        }
+
+        idInput.addEventListener("input", ()=>{});
+        pwdInput.addEventListener("input", canSubmit);
+        loginBtn.addEventListener("click", isValid)
+    </script>
+</body>
+</html>

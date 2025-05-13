@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #121212;
+            display: flex;
+        }
+        .container {
+            width: 64vw;
+            height: 80vh;
+            background: transparent;
+            border: none;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+        }
+        .container .text-box {
+            color: white;
+            font-style: bold;
+            font-size: 1.5rem;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .container .text-box img {
+            width: 42px;
+            height: 42px;
+            margin-top: 23px;
+        }
+        .container .box {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .container .box p {
+            color: red;
+            font-size: 0.875em;
+            margin: 3px;
+        }
+        .container .box p.valid {
+            color: #28a745;
+        }
+        input {
+            width: 300px;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 8px;
+            background: transparent;
+            border: 1px solid white;
+        }
+        button {
+            border: none;
+            border-radius: 50px;
+            width: 300px;
+            padding: 15px;
+            margin-left: 200px;
+            background-color: #1cd760;
+            justify-content: center;
+            align-items: center;
+            margin: 20px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bolder;
+        }
+        .container .login {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #a9a9a9;
+        }
+        .container .login a {
+            font-style: bold;
+            color: white;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-box">
+            <img src="./스포티파이/logo.png">
+            <h1 style="margin-top: 17px;">
+                가입하고<br>
+                원하는 콘텐츠를<br>
+                감상하세요
+            </h1>
+        </div>
+        <div class="box">
+            <input type="text" id="id-box" placeholder="ID">
+            <p id="id-check"></p>
+            <input type="password" id="pwd-box" placeholder="Password">
+            <p id="pwd-check"></p>
+            <input type="mail" id="email-box" placeholder="email">
+            <p id="email-check"></p>
+            <input type="tel" id="phone-box" placeholder="Phone Number">
+            <p id="phone-check"></p>
+            <button type="submit" onclick="location.href='http://127.0.0.1:5500/JS실습/login.html'" disabled>회원 가입 하기</button>
+        </div>
+        <div class="login">
+            <p>이미 계정이 있나요?</p>
+            <a href="http://127.0.0.1:5500/JS실습/login.html">여기에서 로그인하세요.</a>
+        </div>
+    </div>
+
+    <script>
+        const regexId = /^\w{8,20}$/;
+        const regexPwd = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_\-+=\[\]{};:'",.<>/?\\|`~]).{8,}$/;
+        const regexMail = /^([a-z]+\d*)+(\.?\w+)+@\w+(\.\w{2,3})+$/;
+        const regexPhone = /^\d{2,3}-\d{3,4}-\d{4}$/;
+
+        const idInput = document.getElementById("id-box");
+        const pwdInput = document.getElementById("pwd-box");
+        const emailInput = document.getElementById("email-box");
+        const phoneInput = document.getElementById("phone-box");
+        const submitBtn = document.querySelector("button")
+
+        const idCheck = document.getElementById("id-check");
+        const pwdCheck = document.getElementById("pwd-check");
+        const emailCheck = document.getElementById("email-check");
+        const phoneCheck = document.getElementById("phone-check");
+
+        function isValid(input, regex, el) {
+            if (regex.test(input)) {
+                el.textContent = "사용 가능합니다.";
+                el.classList.remove("invalid");
+                el.classList.add("valid");
+                return true;
+            } else {
+                el.textContent = "사용 불가합니다.";
+                el.classList.remove("valid");
+                el.classList.add("invalid");
+                return false;
+            }
+        }
+
+        function canSubmit() {
+            const isIdValid = isValid(idInput.value, regexId, idCheck);
+            const isPwdValid = isValid(pwdInput.value, regexPwd, pwdCheck);
+            const isEmailValid = isValid(emailInput.value, regexMail, emailCheck);
+            const isPhoneValid = isValid(phoneInput.value, regexPhone, phoneCheck);
+
+            if (isIdValid && isPwdValid && isEmailValid && isPhoneValid) {
+                submitBtn.disabled = false;
+                submitBtn.classList.add("enabled");
+            } else {
+                submitBtn.disabled = true;
+                submitBtn.classList.remove("enabled");
+            }
+        }
+
+        function saveInfo() {
+            localStorage.setItem("userId", idInput.value);
+            localStorage.setItem("userPwd", pwdInput.value);
+            localStorage.setItem("userEmail", pwdInput.value);
+            localStorage.setItem("userPhone", pwdInput.value);
+            
+        }
+
+        idInput.addEventListener("input", () => isValid(idInput.value, regexId, idCheck));
+        pwdInput.addEventListener("input", () => isValid(pwdInput.value, regexPwd, pwdCheck));
+        emailInput.addEventListener("input", () => isValid(emailInput.value, regexMail, emailCheck));
+        phoneInput.addEventListener("input", canSubmit);
+        submitBtn.addEventListener("click", saveInfo);
+
+    </script>
+</body>
+</html>

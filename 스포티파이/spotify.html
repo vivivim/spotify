@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+        .header {
+            width: 100vw;
+            height: 64px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .left-box {
+            width: 60vw;
+            display: flex;
+        }
+        .header .logo {
+            width: 72px;
+            height: 72px;
+            margin-left: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header .home {
+            margin-left: 10px;
+            margin-top: 12px;
+            width: 48px;
+            height: 48px;
+            background-color: #1f1f1f;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header .search {
+            margin-left: 10px;
+            margin-top: 12px;
+            width: 400px;
+            height: 48px;
+            background-color: #1f1f1f;
+            border-radius: 40px;
+            align-items: center;
+            display: flex;
+        }
+        .header .search:hover {
+            background-color: #2a2a2a;
+            transition-duration: 0.5s;
+            border: 1px solid #dddddd;
+        }
+        .search-text {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            color: #fff;
+            display: inline-flex;
+            margin-left: 10px;
+            font-size: 18px;
+            width: 300px;
+        }
+        .header .right-text {
+            color: #b3b3b3;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .right-text span {
+            background-color: #fff;
+            color: #000;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-weight: bold;
+            margin: 10px;
+        }
+        .container {
+            display: flex;
+            width: 100vw;
+        }
+        @media screen and (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            .header .search {
+                display: none;
+            }
+            .header .right-text {
+                display: none;
+            }
+        }
+        .sidebar {
+            width: 33vw;
+            min-width: 314px;
+            height: 83vh;
+            margin: 5px;
+            margin-left: 5px;
+            background-color: #121212;
+            color: #fff;
+            border-radius: 10px;
+            justify-content: center;
+            align-items: center;
+        }
+        .sidebar-box {
+            min-width: 260px;
+            height: 133px;
+            margin: 6px;
+            padding: 20px;
+            background-color: #1f1f1f;
+            border-radius: 10px;
+        }
+        .sidebar-box span {
+            background-color: #fff;
+            color: #000;
+            padding: 5px 15px;
+            border-radius: 40px;
+            font-weight: bold;
+        }
+        .content {
+            width: 65vw;
+            height: 83vh;
+            margin: 5px;
+            border-radius: 10px;
+            background: linear-gradient(to bottom, #222222, #121212);
+            overflow: scroll;
+            position: static;
+        }
+        .content .text-box {
+            width: 500px;
+            height: 30px;
+            margin-left: 40px;
+        }
+        .content .song {
+            width: 2286px;
+            height: 300px;
+            padding: 5px 30px;
+            display: flex;
+            overflow: auto;
+        }
+        .content .song .poster {
+            width: 195px;
+            height: 272px;
+            margin: 4px;
+            overflow: auto;
+            color: #fff;
+        }
+        .content .song .poster p {
+            margin-left: 10px;
+        }
+        .content .song .poster:hover {
+            background-color: #242424;
+            border-radius: 6px;
+        }
+        .content .song .poster img {
+            justify-content: center;
+            display: flex;
+            margin: auto;
+            margin-top: 8px;
+            width: 90%;
+            border-radius: 5px;
+        }
+        .content .artist {
+            width: 2186px;
+            height: 300px;
+            padding: 5px 30px;
+            display: flex;
+            overflow: scroll;
+        }
+        .content .artist .profile {
+            width: 195px;
+            height: 252px;
+            margin: 4px;
+            overflow: auto;
+            color: #fff;
+        }
+        .content .artist .profile p {
+            margin-left: 10px;
+        }
+        .content .artist .profile:hover {
+            background-color: #242424;
+            border-radius: 6px;
+        }
+        .content .artist .profile img {
+            justify-content: center;
+            display: flex;
+            margin: auto;
+            width: 80%;
+            margin-top: 8px;
+            border-radius: 50%;
+        }
+        .content .album {
+            width: 2187px;
+            height: 300px;
+            padding: 5px 30px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .content .album .pic {
+            width: 195px;
+            height: 254px;
+            overflow: auto;
+            margin: 4px;
+            color: #fff;
+        }
+        .content .album .pic p {
+            margin-left: 10px;
+        }
+        .content .album .pic:hover {
+            background-color: #242424;
+            border-radius: 6px;
+        }
+        .content .album .pic img {
+            justify-content: center;
+            display: flex;
+            margin: auto;
+            width: 90%;
+            margin-top: 10px;
+            border-radius: 5px
+        }
+        .footer {
+            width: 100vw;
+            height: 64px;
+            background-color: cadetblue;
+            position: fixed;
+            bottom: 0;
+            padding: 5px;
+            background: linear-gradient(to left, #509bf5, #ae2996);
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="left-box">
+            <div class="logo">
+                <img src="./logo.png" alt="" style="width: 32px; height: 32px;">
+            </div>
+            <div class="home">
+                <img src="./home.png" alt="" style="width: 32px; height: 32px;">
+            </div>
+            <div class="search">
+                <img src="./search.png" alt="" style="width: 32px; height: 32px; margin-left: 10px;">
+                <input type="text" class="search-text" placeholder="어떤 콘텐츠를 감상하고 싶으세요?">
+            </div>
+        </div>
+        <div class="right-text">
+            <p><b>Premium</b> 지원 다운로드하기  |  앱 설치하기  가입하기</p>
+            <span>로그인하기</span>
+        </div>
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <h4 style="padding: 10px;">내 라이브러리</h4>
+            <div class="sidebar-box">
+                <h4>첫 번째 플레이리스트를 만드세요.</h4>
+                <p>어렵지 않아요. 저희가 도와드릴게요.</p>
+                <span>플레이리스트 만들기</span>
+            </div>
+            <div class="sidebar-box">
+                <h4>팔로우할 팟캐스트를 찾아보세요.</h4>
+                <p>새로운 에피소드에 대한 소식을 알려드릴게요.</p>
+                <span>팟캐스트 둘러보기</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="text-box">
+                <h2 style="width: 80%; color: #fff; flex-basis: 100%;">인기 상승 곡</h2>
+            </div>
+            <div class="song">
+                <div class="poster">
+                    <img src="./gnarly.jpg" alt="">
+                    <p>Gnarly</p>
+                    <p>KATSEYE</p>
+                </div>
+                <div class="poster">
+                    <img src="./manback.jpg" alt="">
+                    <p>아름다운 꿈</p>
+                    <p>잔나비</p>
+                </div>
+                <div class="poster">
+                    <img src="./meow.jpg" alt="">
+                    <p>HANDS UP</p>
+                    <p>MEOVV</p>
+                </div>
+                <div class="poster">
+                    <img src="./lovelanguage.jpg" alt="">
+                    <p>Love Language</p>
+                    <p>투모로우바이투게더</p>
+                </div>
+                <div class="poster">
+                    <img src="./daynight.jpg" alt="">
+                    <p>Pookie</p>
+                    <p>FIFTY FIFTY</p>
+                </div>
+                <div class="poster">
+                    <img src="./10cm.jpg" alt="">
+                    <p>너에게 닿기를</p>
+                    <p>10cm</p>
+                </div>
+                <div class="poster">
+                    <img src="./colorful.jpg" alt="">
+                    <p>.KR</p>
+                    <p>Dabin</p>
+                </div>
+                <div class="poster">
+                    <img src="./tnmg.jpg" alt="">
+                    <p>남자니까</p>
+                    <p>Potty Monkey</p>
+                </div>
+                <div class="poster">
+                    <img src="./whoru.jpg" alt="">
+                    <p>춘몽</p>
+                    <p>HYUN SEO</p>
+                </div>
+                <div class="poster">
+                    <img src="./what.jpg" alt="">
+                    <p>Stop The Rain(TABLO X RM)</p>
+                    <p>타블로, RM</p>
+                </div>
+                <div class="poster">
+                    <img src="./couple.jpg" alt="">
+                    <p>Heavenly Ever After</p>
+                    <p>임영웅</p>
+                </div>
+            </div>
+            <div class="text-box">
+                <h2 style="width: 80%; color: #fff; flex-basis: 100%;">인기 아티스트</h2>
+            </div>
+            <div class="artist">
+                <div class="profile">
+                    <img src="./gd.jpg" alt="">
+                    <p>G-DRAGON</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./fourman.jpg" alt="">
+                    <p>DAY6</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="aespa.jpg" alt="">
+                    <p>aespa</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./pretty.jpg" alt="">
+                    <p>LE SSERAPIM</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./newjeans.jpg" alt="">
+                    <p>NewJeans</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./bigbang.jpg" alt="">
+                    <p>BIGBANG</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./akmu.jpg" alt="">
+                    <p>AKMU</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./blackman.jpg" alt="">
+                    <p>Kendrick Lamar</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./who.jpg" alt="">
+                    <p>Lady Gaga</p>
+                    <p>아티스트</p>
+                </div>
+                <div class="profile">
+                    <img src="./rose.jpg" alt="">
+                    <p>ROSE</p>
+                    <p>아티스트</p>
+                </div>
+            </div>
+            <div class="text-box">
+                <h2 style="width: 80%; color: #fff; flex-basis: 100%;">인기 앨범 및 싱글</h2>
+            </div>
+            <div class="album">
+                <div class="pic">
+                    <img src="./galigo.jpg" alt="">
+                    <p>Caligo Pt.1</p>
+                    <p>PLAVE</p>
+                </div>
+                <div class="pic">
+                    <img src="./imhero.jpg" alt="">
+                    <p>IM HERO</p>
+                    <p>임영웅</p>
+                </div>
+                <div class="pic">
+                    <img src="./jiminmuse.jpg" alt="">
+                    <p>MUSE</p>
+                    <p>지민</p>
+                </div>
+                <div class="pic">
+                    <img src="./golden.jpg" alt="">
+                    <p>GOLDEN</p>
+                    <p>정국</p>
+                </div>
+                <div class="pic">
+                    <img src="./ruby.jpg" alt="">
+                    <p>Ruby</p>
+                    <p>제니</p>
+                </div>
+                <div class="pic">
+                    <img src="./hot.jpg" alt="">
+                    <p>HOT</p>
+                    <p>LE SSERAFIM</p>
+                </div>
+                <div class="pic">
+                    <img src="./made.jpg" alt="">
+                    <p>MADE</p>
+                    <p>BIGBANG</p>
+                </div>
+                <div class="pic">
+                    <img src="couple.jpg" alt="">
+                    <p>Heavenly Ever After</p>
+                    <p>임영웅</p>
+                </div>
+                <div class="pic">
+                    <img src="./rosie.jpg" alt="">
+                    <p>rosie</p>
+                    <p>ROSE</p>
+                </div>
+                <div class="pic">
+                    <img src="./jiminblack.jpg" alt="">
+                    <p>Who (Remixes)</p>
+                    <p>지민</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p><b>Spotify 미리 듣기</b></p>
+        <p>가끔 표시되는 광고와 함께 무제한 곡 및 팟캐스트를 이용하려면 가입하세요. 신용카드는 필요 없습니다.</p>
+    </div>
+</body>
+</html>
