@@ -7,7 +7,7 @@
     <style>
         body {
             background: linear-gradient(to bottom, #2a2a2a, #000);
-            width: 100vw;
+            /* width: 100vw; */
             height: 100vh;
             background-size: cover;
             background-repeat: no-repeat;
@@ -24,6 +24,12 @@
             align-items: center;
             display: flex;
             margin: 30px auto;
+            flex-direction: column;
+        }
+        @media screen and (max-width: 768px) {
+            .container {
+                background: transparent;
+            }
         }
         .container .text {
             top: 60px;
@@ -39,6 +45,8 @@
         .container .login {
             justify-content: center;
             align-items: center;
+            display: flex;
+            flex-direction: column;
         }
         .container .signup {
             position: absolute;
@@ -52,28 +60,29 @@
             font-style: bold;
             color: white;
         }
-        input {
-            width: 300px;
+        .container .login input {
+            width: 30vw;
+            min-width: 150px;
+            max-width: 350px;
             height: 12px;
             background-color: transparent;
             border: 1px solid white;
             border-radius: 5px;
             padding: 20px;
-            margin: 20px;
             color: white;
             font-weight: bold;
+            justify-content: center;
+            align-items: center;
         }
-        button {
+        .login button {
             border: none;
             border-radius: 50px;
-            width: 300px;
+            width: 100%;
             height: 50px;
-            margin: 10px 20px 10px 40px;
             background-color: #1cd760;
             cursor: pointer;
             font-size: 1em;
             font-weight: bolder;
-            
         }
     </style>
 </head>
